@@ -54,6 +54,21 @@ BootstrapCC(
 
 \item{nCores}{(numeric) number of cpu cores to use (default 1)}
 }
+\value{
+ConsensusClusterPlus returns a list of length maxK.  Each element is a list containing consensusMatrix (numerical matrix), consensusTree (hclust), consensusClass (consensus class asssignments).  ConsensusClusterPlus also produces images.
+calcICL returns a list of two elements clusterConsensus and itemConsensus corresponding to cluster-consensus and item-consensus.  See Monti, et al (2003) for formulas.
+}
 \description{
 A fast Bootstrap implementation of consensus clustering plus algorithm
+}
+\references{
+Please cite the ConsensusClusterPlus publication, below, if you use ConsensusClusterPlus in a publication or presentation:
+     Wilkerson, M.D., Hayes, D.N. (2010). ConsensusClusterPlus: a class discovery tool with confidence assessments and item tracking. Bioinformatics, 2010 Jun 15;26(12):1572-3.
+       Original description of the Consensus Clustering method:
+           Monti, S., Tamayo, P., Mesirov, J., Golub, T. (2003) Consensus Clustering:
+               A Resampling-Based Method for Class Discovery and Visualization of Gene
+                 Expression Microarray Data. Machine Learning, 52, 91-118.
+}
+\author{
+Fernández Elmer efernandez@cidie.ucc.edu.ar
 }
