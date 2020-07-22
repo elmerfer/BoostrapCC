@@ -5,12 +5,18 @@ The Bootstrap Consensus Clustering method is a faster and simpler implementation
 
 We have also developed a new version in python [BootstrapCCpy](https://github.com/NNelo/BootstrapCCpy)
 
+## Installation
+```
+install.packages("devtools")
+library(devtools)
+install_github("elmerfer\BootstrapCC")
+```
 ## Authors
 
 * **Elmer A. Fernández** - *Idea* - Centro de Investigación y Desarrollo en Inmunología y Enfermedades Infecciosas (CIDIE) - Univ. Católica de Córdoba - CONICET, Argentina 
 * **Frias, Gentili** - *Implementation* - Facultad de Ingeniería - Univ. Católica de Córdoba, Argentina 
 * **Saenz, M.** - *Implementation* - Facultad de Ingeniería - Univ. Católica de Córdoba, Argentina 
-* **Fresno, Cristobal** - *Project development supervition* - INMEGEN - Mexico
+* **Fresno, Cristobal** - *Project development supervision* - INMEGEN - Mexico
 
 ## License
 
