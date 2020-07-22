@@ -61,13 +61,24 @@ calcICL returns a list of two elements clusterConsensus and itemConsensus corres
 \description{
 A fast Bootstrap implementation of consensus clustering plus algorithm
 }
+\examples{
+data(iris)
+BootstrapCC(t(data.matrix(iris[,1:4])))
+
+}
 \references{
 Please cite the ConsensusClusterPlus publication, below, if you use ConsensusClusterPlus in a publication or presentation:
-     Wilkerson, M.D., Hayes, D.N. (2010). ConsensusClusterPlus: a class discovery tool with confidence assessments and item tracking. Bioinformatics, 2010 Jun 15;26(12):1572-3.
-       Original description of the Consensus Clustering method:
-           Monti, S., Tamayo, P., Mesirov, J., Golub, T. (2003) Consensus Clustering:
-               A Resampling-Based Method for Class Discovery and Visualization of Gene
-                 Expression Microarray Data. Machine Learning, 52, 91-118.
+
+ Wilkerson, M.D., Hayes, D.N. (2010). ConsensusClusterPlus: a class discovery tool with confidence assessments and item tracking. Bioinformatics, 2010 Jun 15;26(12):1572-3.
+
+ Original description of the Consensus Clustering method:
+
+ Monti, S., Tamayo, P., Mesirov, J., Golub, T. (2003) Consensus Clustering:
+ A Resampling-Based Method for Class Discovery and Visualization of Gene
+ Expression Microarray Data. Machine Learning, 52, 91-118.
+}
+\seealso{
+[ConsensusClusterPlus::ConsensusClusterPlus()] which this function is build on top.
 }
 \author{
 Fernández Elmer efernandez@cidie.ucc.edu.ar

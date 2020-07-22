@@ -17,6 +17,7 @@
 #' @param writeTable logical value. TRUE - write ouput and log to csv.
 #' @param corUse optional character value.  specifies how to handle missing data in correlation distances 'everything','pairwise.complete.obs', 'complete.obs' see cor() for description.
 #' @param nCores (numeric) number of cpu cores to use (default 1)
+#'
 #' @export
 #'
 #'@return
@@ -24,18 +25,22 @@
 #' calcICL returns a list of two elements clusterConsensus and itemConsensus corresponding to cluster-consensus and item-consensus.  See Monti, et al (2003) for formulas.
 #'
 #' @author Fernández Elmer efernandez@cidie.ucc.edu.ar
+#' @seealso [ConsensusClusterPlus::ConsensusClusterPlus()] which this function is build on top.
 #' @references
 #'  Please cite the ConsensusClusterPlus publication, below, if you use ConsensusClusterPlus in a publication or presentation:
-#'      Wilkerson, M.D., Hayes, D.N. (2010). ConsensusClusterPlus: a class discovery tool with confidence assessments and item tracking. Bioinformatics, 2010 Jun 15;26(12):1572-3.
-#'        Original description of the Consensus Clustering method:
-#'            Monti, S., Tamayo, P., Mesirov, J., Golub, T. (2003) Consensus Clustering:
-#'                A Resampling-Based Method for Class Discovery and Visualization of Gene
-#'                  Expression Microarray Data. Machine Learning, 52, 91-118.
-
-
-
-
-
+#'
+#'  Wilkerson, M.D., Hayes, D.N. (2010). ConsensusClusterPlus: a class discovery tool with confidence assessments and item tracking. Bioinformatics, 2010 Jun 15;26(12):1572-3.
+#'
+#'  Original description of the Consensus Clustering method:
+#'
+#'  Monti, S., Tamayo, P., Mesirov, J., Golub, T. (2003) Consensus Clustering:
+#'  A Resampling-Based Method for Class Discovery and Visualization of Gene
+#'  Expression Microarray Data. Machine Learning, 52, 91-118.
+#'
+#' @examples
+#' data(iris)
+#' BootstrapCC(t(data.matrix(iris[,1:4])))
+#'
 BootstrapCC <- function( d=NULL,
                                   maxK = 10,
                                   reps=100,
@@ -60,10 +65,12 @@ BootstrapCC <- function( d=NULL,
                                   # bt= FALSE
                          ) {
   ##description: runs consensus subsamples
+  require(BiocParallel)
+  require(ConsensusClusterPlus)
   bt <- TRUE ## es inherentemente boostrap
 
   .available.cores <- parallel::detectCores()
-  .os <- Sys.info["sysname"]
+  .os <- Sys.info()["sysname"]
   if(nCores <1){
     stop("ERROR : nCores > 0")
   }
@@ -503,6 +510,7 @@ paralelo<-bplapply(1:repCount, function(repet){
       this_assignment=NA
       if(clusterAlg=="hc"){
         ##prune to k for hc
+
         this_assignment = cutree(this_cluster,k)
 
       }else if(clusterAlg=="kmdist"){
@@ -516,7 +524,7 @@ paralelo<-bplapply(1:repCount, function(repet){
                                    nstart = 1,
                                    algorithm = c("Hartigan-Wong") )$cluster
       }else if ( clusterAlg == "pam" ) {
-        this_assignment <- pam( x=this_dist,
+        this_assignment <- cluster::pam( x=this_dist,
                                 k,
                                 diss=TRUE,
                                 metric=distance,
