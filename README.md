@@ -9,7 +9,7 @@ We have also developed a new version in python [BootstrapCCpy](https://github.co
 ```
 install.packages("devtools")
 library(devtools)
-install_github("elmerfer\BootstrapCC")
+install_github("elmerfer/BootstrapCC")
 ```
 ## Authors
 
